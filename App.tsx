@@ -1,20 +1,18 @@
-import { ScreenContent } from 'components/ScreenContent';
-import { StatusBar } from 'expo-status-bar';
-
 import { useFonts } from 'expo-font';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
-
+import { Text, View } from 'react-native';
+import { vars } from 'nativewind'
 
 import './global.css';
-import { Text, View } from 'react-native';
+import HomePage from 'components/HomePage';
 
 SplashScreen.preventAutoHideAsync();
 
 export default function App() {
 
   const [loaded, error] = useFonts({
-    'NovaSlim-Regular': require('./assets/fonts/NovaSlim-Regular.ttf'),
+    'main-font': require('./assets/fonts/NovaSlim-Regular.ttf'),
   });
 
   useEffect(() => {
@@ -27,14 +25,16 @@ export default function App() {
     return null;
   }
   return (
-    <View className='flex-1 justify-center '>
-      {/* <ScreenContent title="Home" path="App.tsx" /> */}
-      {/* <StatusBar style="auto" /> */}
-      <View>
-        <Text className='font-bold' style={{ fontFamily: 'NovaSlim-Regular' }}>
+    <View className='flex-1  justify-center items-center'>
+      <View className='border border-solid'>
+        <Text className="text-primary ">Access as a theme value</Text>
+        <Text className="text-[--color-rgb]">Or the variable directly</Text>
+
+        <Text className='bg-mint-500 ' >
           SIUUU
         </Text>
       </View>
+        <HomePage></HomePage>
     </View>
   );
 }

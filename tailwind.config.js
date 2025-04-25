@@ -4,7 +4,19 @@ module.exports = {
 
   presets: [require('nativewind/preset')],
   theme: {
+    colors: {
+      // Create a custom color that uses a CSS custom value
+      primary: "rgb(0 0 0)",
+    },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    ({ addBase }) =>
+      addBase({
+        ":root": {
+          "--color-values": "255 0 0",
+          "--color-rgb": "rgb(255 255 0)",
+        },
+      }),
+  ],
 };
