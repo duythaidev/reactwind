@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { View, FlatList, StyleSheet, Text, StatusBar, Alert, Button, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, FlatList, StyleSheet, Text, StatusBar, Alert, Button, TouchableOpacity, TouchableWithoutFeedback, Pressable } from 'react-native';
 import uuid from 'react-native-uuid';
 
 const DATA = [
@@ -34,11 +34,27 @@ interface IDATA {
 }
 
 const HomePage = () => {
+
   const [dataList, setDataList] = useState<IDATA[]>(DATA)
+  // const [pressed, setPressed] = useState<boolean>(false)
   const handlePress = (id: string) => {
     const newList = dataList.filter(item => item.id !== id)
-    setDataList(newList)
+    // setDataList(newList)
+    // setPressed()
+
   }
+  const [pressed, setPressed] = useState(false);
+
+  const pressIn = () => {
+    setPressed(true);
+    console.log('pressed in ')
+  };
+
+  const pressOut = () => {
+    setPressed(false);
+    console.log('pressed out')
+
+  };
 
   return (
     <>
@@ -47,12 +63,16 @@ const HomePage = () => {
         keyExtractor={item => uuid.v4()}
         renderItem={({ item }) => (
           <>
-            <TouchableWithoutFeedback onPress={() => handlePress(item.id)}>
-              <Text className='text-black'   style={{ fontFamily: 'main-font' }}>
-                asdad
-
-              </Text>
-            </TouchableWithoutFeedback>
+            {/* <TouchableWithoutFeedback > */}
+            <Pressable 
+            // className={`rounded-md my-1 ${pressed ? '' : 'bg-primary'} p-3 hover:bg-white bg-purple-500 active:bg-purple-700`}
+            className={`rounded-md my-1 ${pressed ? '' : 'bg-primary'} p-3 hover:bg-white bg-purple-500 active:bg-purple-700`}
+ 
+            // () => handlePress(item.id)
+             onPressIn={pressIn} onPressOut={pressOut} >
+              <Text className="text-white">Do something</Text>
+            </Pressable>
+            {/* </TouchableWithoutFeedback> */}
           </>
         )}
       />
