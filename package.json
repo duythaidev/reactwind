@@ -2,6 +2,7 @@
   "name": "my-expo-app",
   "version": "1.0.0",
   "scripts": {
+    "dev": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "start": "expo start",
@@ -12,6 +13,9 @@
   },
   "dependencies": {
     "expo": "^52.0.46",
+    "expo-font": "~13.0.4",
+    "expo-module-scripts": "^4.0.5",
+    "expo-splash-screen": "~0.29.24",
     "expo-status-bar": "~2.0.1",
     "nativewind": "latest",
     "react": "18.3.1",
