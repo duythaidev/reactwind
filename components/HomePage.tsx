@@ -1,29 +1,31 @@
 
-import React, { useState } from 'react';
-import { View, FlatList, StyleSheet, Text, StatusBar, Alert, Button, TouchableOpacity, TouchableWithoutFeedback, Pressable } from 'react-native';
+// import { useNavigation } from '@react-navigation/native';
+import { ParamListBase, useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { View, FlatList, StyleSheet, Text, StatusBar, Alert, Button, TouchableOpacity, TouchableWithoutFeedback, Pressable, TouchableHighlight } from 'react-native';
 import uuid from 'react-native-uuid';
-
+import { RootStackParamList } from '~/types';
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
+    id: uuid.v4(),
     title: 'First Item',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f61',
+    id: uuid.v4(),
     title: 'Second Item a',
   },
 
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28baa',
+    id: uuid.v4(),
     title: 'First Item',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
+    id: uuid.v4(),
     title: 'Second Item a',
   },
 
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
+    id: uuid.v4(),
     title: 'Third Item a',
   },
 ];
@@ -34,53 +36,45 @@ interface IDATA {
 }
 
 const HomePage = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
-  const [dataList, setDataList] = useState<IDATA[]>(DATA)
-  // const [pressed, setPressed] = useState<boolean>(false)
-  const handlePress = (id: string) => {
-    const newList = dataList.filter(item => item.id !== id)
-    // setDataList(newList)
-    // setPressed()
+  // const [dataList, setDataList] = useState<IDATA[]>(DATA)
+  // const handlePress = (id: string) => {
+  //   const newList = dataList.filter(item => item.id !== id)
+  //   // setDataList(newList)
+  // }
 
-  }
-  const [pressed, setPressed] = useState(false);
 
-  const pressIn = () => {
-    setPressed(true);
-    console.log('pressed in ')
-  };
+  // const onPressButton = () => {
+  // };
 
-  const pressOut = () => {
-    setPressed(false);
-    console.log('pressed out')
-
-  };
-
+  // const onLongPressButton = () => {
+  // };
   return (
-    <>
-      <FlatList className='flex-none'
+    <View className='flex-1  justify-center items-center'>
+      {/* <FlatList className='flex-none'
         data={dataList}
-        keyExtractor={item => uuid.v4()}
+        keyExtractor={item => item.id}
         renderItem={({ item }) => (
           <>
-            {/* <TouchableWithoutFeedback > */}
-            <Pressable 
-            // className={`rounded-md my-1 ${pressed ? '' : 'bg-primary'} p-3 hover:bg-white bg-purple-500 active:bg-purple-700`}
-            className={`rounded-md my-1 ${pressed ? '' : 'bg-primary'} p-3 hover:bg-white bg-purple-500 active:bg-purple-700`}
- 
-            // () => handlePress(item.id)
-             onPressIn={pressIn} onPressOut={pressOut} >
-              <Text className="text-white">Do something</Text>
-            </Pressable>
-            {/* </TouchableWithoutFeedback> */}
+            <TouchableHighlight
+              onPress={onPressButton}
+              onLongPress={onLongPressButton}
+              underlayColor="orange">
+              <View>
+                <Text className='p-5 rounded-md text-white bg-primary m-1'>Touchable with Long Press</Text>
+              </View>
+            </TouchableHighlight>
           </>
         )}
-      />
+      /> */}
+
+      <Button title="Go to Jane's profile" onPress={() => navigation.navigate("Other", { userId: 100 })} />
 
       <Text>
         Lol
       </Text>
-    </>
+    </View>
   )
 }
 export default HomePage;

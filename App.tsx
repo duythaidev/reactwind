@@ -6,8 +6,14 @@ import { vars } from 'nativewind'
 
 import './global.css';
 import HomePage from 'components/HomePage';
+import OtherPage from 'components/OtherPage';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { RootStackParamList } from '~/types';
 
 SplashScreen.preventAutoHideAsync();
+
+const Stack = createNativeStackNavigator<RootStackParamList>();
 
 export default function App() {
 
@@ -25,16 +31,21 @@ export default function App() {
     return null;
   }
   return (
-    <View className='flex-1  justify-center items-center'>
-      <View className='border border-solid'>
-        <Text className="text-primary ">Access as a theme value</Text>
-        <Text className="text-[--color-rgb]">Or the variable directly</Text>
-
-        <Text className='bg-mint-500 ' >
-          SIUUU
-        </Text>
-      </View>
-        <HomePage></HomePage>
-    </View>
+    <>
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Home"
+            component={HomePage}
+            options={{ title: 'Welcome' }}
+          />
+          <Stack.Screen
+            name="Other"
+            component={OtherPage}
+            options={{ title: 'Other page' }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
