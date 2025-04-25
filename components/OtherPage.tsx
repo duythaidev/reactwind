@@ -1,10 +1,11 @@
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Text, TouchableHighlight, View } from "react-native";
-import { RootStackParamList } from "~/types";
+import { TRoutes } from "~/types";
 
-type Props = NativeStackScreenProps<RootStackParamList>;
+type Props = NativeStackScreenProps<TRoutes, 'Other'>;
 
 const OtherPage = ({ route, navigation }: Props) => {
+
     return (
         <View className='flex-1  justify-center items-center'>
 
@@ -21,6 +22,7 @@ const OtherPage = ({ route, navigation }: Props) => {
                     aaa
                 </Text>
             </TouchableHighlight>
+            <Text>{route.params?.userId ? route.params?.userId : ''}</Text>
         </View>
     )
 }

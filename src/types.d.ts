@@ -1,4 +1,4 @@
-export type RootStackParamList = {
+export type TRoutes = {
   Home: undefined,
   Other: { userId: number } | undefined;
 };

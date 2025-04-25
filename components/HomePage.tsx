@@ -2,9 +2,10 @@
 // import { useNavigation } from '@react-navigation/native';
 import { ParamListBase, useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { useState } from 'react';
 import { View, FlatList, StyleSheet, Text, StatusBar, Alert, Button, TouchableOpacity, TouchableWithoutFeedback, Pressable, TouchableHighlight } from 'react-native';
 import uuid from 'react-native-uuid';
-import { RootStackParamList } from '~/types';
+import { TRoutes } from '~/types';
 const DATA = [
   {
     id: uuid.v4(),
@@ -36,23 +37,23 @@ interface IDATA {
 }
 
 const HomePage = () => {
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useNavigation<NativeStackNavigationProp<TRoutes>>();
 
-  // const [dataList, setDataList] = useState<IDATA[]>(DATA)
-  // const handlePress = (id: string) => {
-  //   const newList = dataList.filter(item => item.id !== id)
-  //   // setDataList(newList)
-  // }
+  const [dataList, setDataList] = useState<IDATA[]>(DATA)
+  const handlePress = (id: string) => {
+    const newList = dataList.filter(item => item.id !== id)
+    // setDataList(newList)
+  }
 
 
-  // const onPressButton = () => {
-  // };
+  const onPressButton = () => {
+  };
 
-  // const onLongPressButton = () => {
-  // };
+  const onLongPressButton = () => {
+  };
   return (
     <View className='flex-1  justify-center items-center'>
-      {/* <FlatList className='flex-none'
+      <FlatList className='flex-none'
         data={dataList}
         keyExtractor={item => item.id}
         renderItem={({ item }) => (
@@ -67,7 +68,7 @@ const HomePage = () => {
             </TouchableHighlight>
           </>
         )}
-      /> */}
+      />
 
       <Button title="Go to Jane's profile" onPress={() => navigation.navigate("Other", { userId: 100 })} />
 

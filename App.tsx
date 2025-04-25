@@ -9,11 +9,11 @@ import HomePage from 'components/HomePage';
 import OtherPage from 'components/OtherPage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { RootStackParamList } from '~/types';
+import { TRoutes } from '~/types';
 
 SplashScreen.preventAutoHideAsync();
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
+const Stack = createNativeStackNavigator<TRoutes>();
 
 export default function App() {
 
